@@ -21,29 +21,31 @@
 
 | Column          | Type       | Option      |
 | --------------- | ---------- | ----------- |
-| item            | string     | null: false |
+| name            | string     | null: false |
 | explanation     | text       | null: false |
 | category_id     | integer    | null: false |
 | status_id       | integer    | null: false |
 | shipping_fee_id | integer    | null: false |
-| prefecture_id       | integer    | null: false |
+| prefecture_id   | integer    | null: false |
 | shipping_day_id | integer    | null: false |
 | price           | integer    | null: false |
 | user            | references | null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
+- has_many :orders
 
 ## orders テーブル
 
 | Column  | Type       | Option      |
 | ------- | ---------- | ----------- |
-| user_id | integer    | null: false |
-| item_id | integer    | null: false |
-| user    | references | null: false, foreign_key: true |
+| user_id | references | null: false, foreign_key: true |
+| item_id | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
+- belongs_to :item
+- has_one :address
 
 ## addresses テーブル
 
