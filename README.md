@@ -33,14 +33,14 @@
 
 ### Association
 - belongs_to :user
-- has_many :orders
+- has_one :order
 
 ## orders テーブル
 
 | Column  | Type       | Option      |
 | ------- | ---------- | ----------- |
-| user_id | references | null: false, foreign_key: true |
-| item_id | references | null: false, foreign_key: true |
+| user | references | null: false, foreign_key: true |
+| item | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
