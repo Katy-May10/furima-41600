@@ -6,48 +6,56 @@
 | --------------------- | ------- | ----------- |
 | nickname              | string  | null: false |
 | email                 | string  | null: false, unique: true |
-| password              | string  | null: false |
-| password_confirmation | string  | null: false |
+| encryped_password     | string  | null: false |
 | last_name             | string  | null: false |
 | first_name            | string  | null: false |
 | last_name_reading     | string  | null: false |
 | first_name_reading    | string  | null: false |
-| birthday_year         | integer | null: false |
-| birthday_month        | integer | null: false |
-| birthday_date         | integer | null: false |
+| birthday              | date    | null: false |
 
 ### Association
 - has_many :items
-- has_one :order
+- has_many :orders
 
 ## items テーブル
 
-| Column       | Type       | Option      |
-| ------------ | ---------- | ----------- |
-| item         | string     | null: false |
-| explanation  | text       | null: false |
-| category     | integer    | null: false |
-| status       | integer    | null: false |
-| shipping_fee | integer    | null: false |
-| region       | integer    | null: false |
-| shipping_day | integer    | null: false |
-| price        | integer    | null: false |
-| user         | references | null: false, foreign_key: true|
+| Column          | Type       | Option      |
+| --------------- | ---------- | ----------- |
+| item            | string     | null: false |
+| explanation     | text       | null: false |
+| category_id     | integer    | null: false |
+| status_id       | integer    | null: false |
+| shipping_fee_id | integer    | null: false |
+| prefecture_id       | integer    | null: false |
+| shipping_day_id | integer    | null: false |
+| price           | integer    | null: false |
+| user            | references | null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
 
 ## orders テーブル
 
-| Column        | Type       | Option      |
-| ------------- | ---------- | ----------- |
-| postal_code   | integer    | null: false |
-| prefecture    | integer    | null: false |
-| city          | string     | null: false |
-| house_number  | integer    | null: false |
-| building_name | string     | null: false |
-| phone         | integer    | null: false |
-| user          | references | null: false, foreign_key: true |
+| Column  | Type       | Option      |
+| ------- | ---------- | ----------- |
+| user_id | integer    | null: false |
+| item_id | integer    | null: false |
+| user    | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
+
+## addresses テーブル
+
+| Column           | Type       | Option      |
+| ---------------- | ---------- | ----------- |
+| postal_code      | string     | null: false |
+| prefecture_id    | integer    | null: false |
+| city             | string     | null: false |
+| house_number     | string     | null: false |
+| building_name    | string     |             |
+| phone            | string     | null: false |
+| order            | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :order
