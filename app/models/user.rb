@@ -9,6 +9,8 @@ class User < ApplicationRecord
     validates :birthday
   end
 
+  has_many :items
+
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
   validates_format_of :password, with: PASSWORD_REGEX, message: 'is invalid. Include both letters and numbers'
 
