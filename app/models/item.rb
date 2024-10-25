@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :status
+  belongs_to :shippingfee
 
   validates :name,            presence: true
   validates :explanation,     presence: true
