@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :status
   belongs_to :shippingfee
+  belongs_to :prefecture
 
   validates :name,            presence: true
   validates :explanation,     presence: true
