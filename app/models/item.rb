@@ -9,12 +9,14 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :shippingday
 
-  validates :name,            presence: true
-  validates :explanation,     presence: true
-  validates :category_id,     presence: true
-  validates :status_id,       presence: true
-  validates :shipping_fee_id, presence: true
-  validates :prefecture_id,   presence: true
-  validates :shipping_day_id, presence: true
-  validates :price,           presence: true
+  with_options presence: true do
+    validates :name
+    validates :explanation
+    validates :category_id
+    validates :status_id
+    validates :shipping_fee_id
+    validates :prefecture_id
+    validates :shipping_day_id
+    validates :price
+  end
 end
