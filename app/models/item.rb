@@ -15,7 +15,7 @@ class Item < ApplicationRecord
     validates :explanation
   end
 
-  validates :price, presence: true, format: { with: /\A\d+\z/, message: "can't be blank" }
+  validates :price, presence: true, numericality: { only_integer: true, message: ' must be integer ' }
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
   with_options numericality: { other_than: 0, message: "can't be blank" } do
