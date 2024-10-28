@@ -7,7 +7,7 @@ RSpec.describe Item, type: :model do
 
   describe '商品情報の保存' do
     context 'DBに保存できるとき' do
-      it 'image, name, explanation, category_id, status_id, shipping_fee_id, prefecture_id, shipping_day_id, priceが存在すれば保存できる' do
+      it 'image, name, explanation, category_id, status_id, shippingfee_id, prefecture_id, shippingday_id, priceが存在すれば保存できる' do
         expect(@item).to be_valid
       end
     end
@@ -39,7 +39,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Status can't be blank")
       end
       it '配送料の負担を選択しないと保存できない' do
-        @item.shipping_fee_id = '0'
+        @item.shippingfee_id = '0'
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping fee can't be blank")
       end
@@ -49,7 +49,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it '配送までの日数を選択しないと保存できない' do
-        @item.shipping_day_id = '0'
+        @item.shippingday_id = '0'
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping day can't be blank")
       end
