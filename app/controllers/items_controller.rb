@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
-      render :index, status: :unprocessable_entity
+      render action: :edit, status: :unprocessable_entity
     end
   end
 
