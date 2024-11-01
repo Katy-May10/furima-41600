@@ -7,11 +7,13 @@ class OrderAddress
   validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
 
   with_options presence: true do
+    validates :user_id
+    validates :item_id
     validates :city
     validates :house_number
   end
 
-  VALID_PHONE_REGEX = /\A\d{2,4}-\d{2,4}-\d{3,4}\z/
+  VALID_PHONE_REGEX = /\A\d{10,11}\z/
 
   validates :phone, presence: true, format: { with: VALID_PHONE_REGEX, message: 'is too short' }
   validates :phone, numericality: { only_integer: true, message: 'is invalid. Input only number' }
