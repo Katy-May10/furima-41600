@@ -12,8 +12,7 @@ class OrderAddress
     validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
     validates :city
     validates :house_number
-    validates :phone, format: { with: VALID_PHONE_REGEX, message: 'is too short' }
-    validates :phone, format: { with: VALID_PHONE_REGEX, message: 'is too long' }
+    validates :phone, format: { with: VALID_PHONE_REGEX, message: 'is not 10 or 11 numbers' }
   end
 
   validates :phone, numericality: { only_integer: true, message: 'is invalid. Input only number' }
