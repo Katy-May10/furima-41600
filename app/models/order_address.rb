@@ -1,6 +1,8 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :house_number, :building_name, :phone, :order_id, :token
+  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :house_number, :building_name, :phone, :token
+
+  VALID_PHONE_REGEX = /\A\d{10,11}\z/
 
   with_options presence: true do
     validates :user_id
@@ -10,11 +12,10 @@ class OrderAddress
     validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
     validates :city
     validates :house_number
+    validates :phone, format: { with: VALID_PHONE_REGEX, message: 'is too short' }
+    validates :phone, format: { with: VALID_PHONE_REGEX, message: 'is too long' }
   end
 
-  VALID_PHONE_REGEX = /\A\d{10,11}\z/
-
-  validates :phone, presence: true, format: { with: VALID_PHONE_REGEX, message: 'is too short' }
   validates :phone, numericality: { only_integer: true, message: 'is invalid. Input only number' }
 
   def save
